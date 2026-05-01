@@ -25,11 +25,10 @@ def home():
         elif action == "balance":
             message = check_balance(name)
 
-        # 🔥 THIS FIXES THE POPUP ISSUE
-        return redirect(url_for("home", message=message))
+        return redirect(url_for("home", message = message))
 
     message = request.args.get("message", "")
-    return render_template("index.html", message=message)
+    return render_template("index.html", message = message)
 
 
 if __name__ == "__main__":

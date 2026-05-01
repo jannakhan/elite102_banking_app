@@ -12,12 +12,10 @@ CREATE TABLE IF NOT EXISTS accounts (
 """)
 conn.commit()
 
-
 def create_account(name, amount):
     cursor.execute("INSERT INTO accounts (name, balance) VALUES (?, ?)", (name, amount))
     conn.commit()
     return "Account created"
-
 
 def deposit(name, amount):
     cursor.execute("SELECT balance FROM accounts WHERE name = ?", (name,))
@@ -29,7 +27,6 @@ def deposit(name, amount):
         conn.commit()
         return "Deposit successful"
     return "Account not found"
-
 
 def withdraw(name, amount):
     cursor.execute("SELECT balance FROM accounts WHERE name = ?", (name,))
@@ -44,14 +41,11 @@ def withdraw(name, amount):
         return "Not enough money"
     return "Account not found"
 
-
 def check_balance(name):
     cursor.execute("SELECT balance FROM accounts WHERE name = ?", (name,))
     result = cursor.fetchone()
 
     if result:
-        balance = result[0]
-        message = "Balance: $" + str(balance)
-        return message
+        return "Balance: $" + str(result[0])
     else:
         return "Account not found"
